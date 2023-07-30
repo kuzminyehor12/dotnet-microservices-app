@@ -5,9 +5,9 @@ namespace Basket.API.Extensions
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddRepositories(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddRepositories(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IBasketRepository, BasketRepositoryDecorator>();
+            return serviceCollection.AddScoped<IBasketRepository, BasketRepositoryDecorator>();
         }
     }
 }

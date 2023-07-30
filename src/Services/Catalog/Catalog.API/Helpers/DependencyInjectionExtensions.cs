@@ -1,4 +1,5 @@
-﻿using Catalog.API.Data;
+﻿using Catalog.API.Configuration;
+using Catalog.API.Data;
 using Catalog.API.Decorators;
 using Catalog.API.Repositories;
 
@@ -6,14 +7,22 @@ namespace Catalog.API.Helpers
 {
     public static class DependencyInjectionExtensions
     {
-        public static void AddRepositories(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddRepositories(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IProductRepository, ProductRepositoryDecorator>();
+            return serviceCollection.AddScoped<IProductRepository, ProductRepositoryDecorator>();
         }
 
-        public static void AddContext(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddContext(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<ICatalogContext, CatalogContext>();
+            return serviceCollection.AddScoped<ICatalogContext, CatalogContext>();
+        }
+
+        public static IServiceCollection AddDbSettings(this IServiceCollection serviceCollection, IConfiguration configuration)
+        {
+            return serviceCollection.AddSingleton(serviceProvider =>
+            {
+                return new DatabaseSettings(configuration);
+            });
         }
     }
 }

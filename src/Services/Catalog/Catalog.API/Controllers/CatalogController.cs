@@ -49,7 +49,7 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<Product>> CreateProduct(Product product, CancellationToken cancellationToken)
         {
             var result = await _productRepository.CreateAsync(product, cancellationToken);
-            return result ? CreatedAtRoute(nameof(CreateProduct), product) : BadRequest();
+            return result ? CreatedAtAction(nameof(CreateProduct), product) : BadRequest();
         }
 
         [HttpPut]
