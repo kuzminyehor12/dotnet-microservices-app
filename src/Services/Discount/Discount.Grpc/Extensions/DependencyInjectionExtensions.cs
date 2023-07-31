@@ -2,7 +2,7 @@
 using Discount.DataAccess.Repositories;
 using Npgsql;
 
-namespace Discount.API.Extensions
+namespace Discount.Grpc.Extensions
 {
     public static class DependencyInjectionExtensions
     {

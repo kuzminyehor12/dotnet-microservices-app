@@ -1,4 +1,4 @@
-﻿namespace Discount.API.Entities
+﻿namespace Discount.DataAccess.Entities
 {
     public class BaseEntity
     {

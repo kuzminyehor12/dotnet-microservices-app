@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using Discount.API.Models;
-using Discount.API.Entities;
+using Discount.DataAccess.Models;
+using Discount.DataAccess.Entities;
 using Npgsql;
 
-namespace Discount.API.Repositories
+namespace Discount.DataAccess.Repositories
 {
     public class DiscountRepository : IDiscountRepository
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Discount.API.Models
+namespace Discount.DataAccess.Models
 {
     public class Result
     {

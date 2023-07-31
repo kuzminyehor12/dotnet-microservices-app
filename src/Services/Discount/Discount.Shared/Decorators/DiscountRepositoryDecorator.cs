@@ -1,10 +1,10 @@
-﻿using Discount.API.Models;
-using Discount.API.Entities;
-using Discount.API.Repositories;
+﻿using Discount.DataAccess.Models;
+using Discount.DataAccess.Entities;
+using Discount.DataAccess.Repositories;
 using Npgsql;
-using static Dapper.SqlMapper;
+using Microsoft.Extensions.Logging;
 
-namespace Discount.API.Decorators
+namespace Discount.DataAccess.Decorators
 {
     public class DiscountRepositoryDecorator : IDiscountRepository
     {
