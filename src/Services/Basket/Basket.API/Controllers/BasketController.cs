@@ -1,5 +1,6 @@
 ﻿using Basket.API.Entities;
 using Basket.API.Repositories;
+using Basket.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +10,18 @@ namespace Basket.API.Controllers
     [ApiController]
     public class BasketController : ControllerBase
     {
-        private readonly IBasketRepository _basketRepository;
+        private readonly IBasketService _basketService;
 
-        public BasketController(IBasketRepository basketRepository)
+        public BasketController(IBasketService basketRepository)
         {
-            _basketRepository = basketRepository;
+            _basketService = basketRepository;
         }
 
         [HttpGet("{userName}")]
         [ProducesResponseType(typeof(ShoppingCart), StatusCodes.Status200OK)]
         public async Task<ActionResult<ShoppingCart>> GetBasket(string userName, CancellationToken cancellationToken)
         {
-            var basket = await _basketRepository.GetBasketAsync(userName, cancellationToken);
+            var basket = await _basketService.GetBasketAsync(userName, cancellationToken);
             return Ok(basket);
         }
 
@@ -28,7 +29,7 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(ShoppingCart), StatusCodes.Status200OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket(ShoppingCart shoppingCart, CancellationToken cancellationToken)
         {
-            var basket = await _basketRepository.UpdateBasketAsync(shoppingCart, cancellationToken);
+            var basket = await _basketService.UpdateBasketAsync(shoppingCart, cancellationToken);
             return Ok(basket);
         }
 
@@ -36,7 +37,7 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         public async Task<ActionResult> DeleteBasket(string userName, CancellationToken cancellationToken)
         {
-            await _basketRepository.DeleteBasketAsync(userName, cancellationToken);
+            await _basketService.DeleteBasketAsync(userName, cancellationToken);
             return Ok();
         }
     }
